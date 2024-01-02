@@ -8,6 +8,7 @@ export async function findDay(date: string) {
     filters: {
       date: date,
     },
+    populate: ["tasks"],
   });
   try {
     const response = await fetch(url + path + "?" + query);

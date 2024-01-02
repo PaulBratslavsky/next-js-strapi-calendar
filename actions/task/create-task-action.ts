@@ -2,13 +2,11 @@
 import { revalidatePath } from "next/cache";
 import { createTask } from "@/database/models/tasks";
 
-export async function createTaskAction(formData: FormData) {
+export async function createTaskAction(id: string, formData: FormData) {
   const date = formData.get("date");
   const entity = await createTask({
     title: "New Task",
-    calendarDay: {
-      connect: { date: date },
-    },
+    entry: { connect: [{ id: id }]},
   });
   revalidatePath("/" + date);
   return { data: entity };

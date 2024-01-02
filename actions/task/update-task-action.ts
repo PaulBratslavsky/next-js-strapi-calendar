@@ -13,6 +13,7 @@ export async function updateTaskAction(formData: FormData) {
   };
 
   const entity = await updateTask(taskId as string, data);
+  console.log(entity);
   
   revalidatePath("/");
   return { data: entity };

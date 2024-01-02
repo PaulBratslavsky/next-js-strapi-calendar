@@ -18,8 +18,6 @@ async function loadDateData(date: string) {
 export default async function DynamicDateRoute({ params }: ParamsProps) {
   const data = await loadDateData(params.date);
 
-  console.log(data);
-
   if (!data) return <InitializeDayForm date={params.date} />;
 
   return (
@@ -34,7 +32,7 @@ export default async function DynamicDateRoute({ params }: ParamsProps) {
               </Card>
             );
           })}
-        <CreateTaskForm date={params.date} />
+        <CreateTaskForm date={params.date} id={data.id} />
       </div>
     </Card>
   );
